@@ -12,5 +12,4 @@ class Funcionario(Pessoa):
         return item
     def falar(self):
         print(f'Você deseja:\n1. Vizualizar acervo {5*''}2. Pesquisar Fóssil {5*''}3. Sobre nossa equipe')
-f1 = Funcionario('João', '111.444.555-66', '12/06/1996', 'joao43@gmail.com', 'Joap34!')
-print(f1.vizualizar_id())
+
