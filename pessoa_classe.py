@@ -13,6 +13,8 @@ class Pessoa(ABC):
     def verificacao(self, senha):
         if self.__getsenha == senha:
             return True
+        else:
+            return False
     def mudarsenha(self):
         esc = input('Digite sua senha antiga (caso não saiba digite 1 para mudar pelo CPF): ')
         if esc != '1':

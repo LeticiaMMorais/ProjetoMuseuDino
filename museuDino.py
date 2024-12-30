@@ -36,6 +36,7 @@ def entrada():
             print('Parece que você digitou incorretamente. Tente novamente!')
         
     def login(funcionarios, visitantes):
+        global vi_verificado, fu_verificado
         print('Olá, vamos fazer seu login?')
         situation = input('Você é visitante ou funcionário? ')
         if situation.lower() == 'visitante':
@@ -47,7 +48,12 @@ def entrada():
             if senha.lower() == 'y':    
                 currentv.mudarsenha() 
             else:
-                currentv.verficacao(senha)
+                if currentv.verficacao(senha):
+                    print('Bem-vindo(a) de volta!')
+                    vi_verificado = True
+                else:
+                    print('Senha incorreta!')
+                    vi_verificado = False
         elif situation.lower() in ('funcionario', 'funcionário'):
             id = input('Insira seu ID: ')
             for f in funcionarios:
@@ -57,7 +63,12 @@ def entrada():
             if senha.lower() == 'y':    
                 currentf.mudarsenha() 
             else:
-                currentf.verficacao(senha)
+                if currentf.verficacao(senha):
+                    print(f'Bem-vindo(a) de volta funcionário {currentf.nome.title()}!')
+                    fu_verificado = True
+                else:
+                    print('Senha incorreta!')
+                    fu_verificado = False
             
 
     start = int(input('Museu Dino\n-1- Sign in\n2- Login\n> '))
