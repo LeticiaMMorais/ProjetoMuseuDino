@@ -6,8 +6,11 @@ class Pessoa(ABC):
         self.dataNascimento = dataNascimento
         self._email = email
         self.__senha = senha
+    def getemail(self):
+        return self._email
     def __getsenha(self):
         return self.__senha
+    
     def mudarsenha(self):
         esc = input('Digite sua senha antiga (caso não saiba digite 1 para mudar pelo CPF): ')
         if esc != '1':
