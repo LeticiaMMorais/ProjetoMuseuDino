@@ -48,7 +48,7 @@ def entrada():
             if senha.lower() == 'y':    
                 currentv.mudarsenha() 
             else:
-                if currentv.verficacao(senha):
+                if currentv.verificacao(senha):
                     print('Bem-vindo(a) de volta!')
                     vi_verificado = True
                 else:
@@ -63,7 +63,7 @@ def entrada():
             if senha.lower() == 'y':    
                 currentf.mudarsenha() 
             else:
-                if currentf.verficacao(senha):
+                if currentf.verificacao(senha):
                     print(f'Bem-vindo(a) de volta funcionário {currentf.nome.title()}!')
                     fu_verificado = True
                 else:
