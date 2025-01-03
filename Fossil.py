@@ -1,9 +1,9 @@
 class Fossil:
-    def __init__(self, id:str, dinossauro:str, categoria:str, parte:str,idade:int):
+    def __init__(self, id:str, dinossauro:str, categoria:str, parte:str,idade:str):
         self.__id = id
-        self.__dinossauro =dinossauro
-        self.__categoria = categoria
-        self.__parte = parte
+        self.__dinossauro =dinossauro.title()
+        self.__categoria = categoria.lower()
+        self.__parte = parte.lower()
         self.__idade = idade
 
     def getID(self):

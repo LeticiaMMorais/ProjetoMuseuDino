@@ -1,4 +1,6 @@
 from Fossil import Fossil
+import random
+
 class Acervo:
     def __init__(self, fosseis:list=[]):
         self.__fosseis = fosseis
@@ -9,9 +11,9 @@ class Acervo:
     
 
     def __adicionar_fossil(self, dinossauro:str,categoria:str, parte:str, idade:int):
-        novoID = dinossauro[:2].lower()
+        novoID = dinossauro[:2].upper()
         while len(novoID)<=3:
-            num = range.randint(100000,999999)
+            num = random.randint(100000,999999)
             igual = False
             for fossil in self.__fosseis:
                 if fossil.getID() == novoID + str(num):
@@ -44,7 +46,7 @@ class Acervo:
             nomeDino = input('Digite o nome do dinossauro a que pertence o fóssil: ')
             categoria = input('Digite o tipo da alimentação do dinossauro (Herbivoro, Carnivoro ou Onivoro): ')
             parteDino = input('Digite a parte do corpo do dinossauro a que se refere o fóssil: ')
-            idadeFossil = int(input('Informe a idade do fóssil: '))
+            idadeFossil = input('Informe a idade do fóssil: ')
             
             self.__adicionar_fossil(nomeDino,categoria,parteDino,idadeFossil)
 
