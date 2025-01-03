@@ -108,14 +108,15 @@ def homepage_visi(vi_verificado, visitante, acervodisp):
     if vi_verificado:
         visitante.falar()
         print('Olá, {}!'.format(visitante.getnome().title()))
-        funcao = int(input('Você deseja:\n1- Vizualizar acervo (por conta própria)\n2- Vizualizar acervo com um guia\n3- Conhecer a história do Museu\n4- Procurar fóssil\n5- Sobre a nossa equipe\n> '))
+        funcao = int(input('Você deseja:\n1- Vizualizar acervo (por conta própria)\n2- Vizualizar acervo com um guia\n3- Conhecer a história do Museu\n4- Procurar fóssil\n5- Sobre a equipe Roberto Marino\n> '))
         guiaEscolhido = False
 
         if funcao == 1:
             acervodisp.listar()
 
         elif funcao == 2:
-            guia_esc = guia()
+            if not guiaEscolhido:
+                guia_esc = guia()
             guiaEscolhido = True #aqui o visitante já escolheu o guia dele
             for fossil in acervodisp.getFosseis():
                 print(f'Nome do dinossauro: {fossil.getDinossauro()}\nHábito alimentar do dinossauro: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}\n')
@@ -125,16 +126,16 @@ def homepage_visi(vi_verificado, visitante, acervodisp):
         elif funcao == 3:
             if not guiaEscolhido:
                 guia_esc = guia()
-            print(guia_esc.historiaMuseu())
+            print(guia.getNome(),':\n',guia_esc.historiaMuseu())
 
         elif funcao == 4:
             modo = 0
             while modo not in [1,2,3]:
-                modo = int(input('Você deseja encontrar o fossíl\n1-ID do fóssil\n2-Nome do dinossauro\n3-Hábito alimentar do dinossauro\n> '))
+                modo = int(input('Você deseja encontrar o fóssil\n1-ID do fóssil\n2-Nome do dinossauro\n3-Hábito alimentar do dinossauro\n> '))
                 if modo == 1:
-                    pesquisa = input('Digite o ID do fossíl: ')
+                    pesquisa = input('Digite o ID do fóssil: ')
                 elif modo in (2, 3):
-                    pesquisa = input(f'O que você está procurando de {modo}?')
+                    pesquisa = input(f'O que você está procurando no modo {modo}?')
                 else:
                     print('Digite um valor correspondente aos citados!')
             acervodisp.encontrar_fossil(pesquisa, modo)
@@ -149,22 +150,22 @@ def homepage_visi(vi_verificado, visitante, acervodisp):
 def homepage_func(fu_verificado, funcionario, acervodisp):
     if fu_verificado:
         print('Olá, funcionário!')
-        funcao = int(input('Você deseja:\n1- Vizualizar acervo\n2- Procurar fossíl\n3- Editar acervo\n> '))
+        funcao = int(input('Você deseja:\n1- Vizualizar acervo\n2- Procurar fóssil\n3- Editar acervo\n> '))
         if funcao == 1:
             acervodisp.listar()
         elif funcao == 2: 
             modo = 0
             while modo not in (1, 2, 3):
-                modo = int(input('Você deseja encontrar o fossíl\n1-ID do fóssil\n2-Nome do dinossauro\n3-Categoria do dinossauro\n> '))
+                modo = int(input('Você deseja encontrar o fóssil\n1-ID do fóssil\n2-Nome do dinossauro\n3-Hábito alimentar do dinossauro\n> '))
                 if modo == 1:
-                    pesquisa = input('Digite o ID do fossíl: ')
+                    pesquisa = input('Digite o ID do fóssil: ')
                 elif modo in (2, 3):
-                    pesquisa = input(f'O que você está procurando de {modo}?')
+                    pesquisa = input(f'O que você está procurando no modo {modo}?')
                 else:
                     print('Digite um valor correspondente aos citados!')
             acervodisp.encontrar_fossil(pesquisa, modo)
         elif funcao == 3:
-            print('1- Adicionar novo fossíl ao acervo\n2- Excluir fóssil do acervo')
+            print('1- Adicionar novo fóssil ao acervo\n2- Excluir fóssil do acervo')
             acervodisp.edicao(funcionario.editar_acervo())
         else:
             print('Esse valor não está disponível para acesso. Digite um valor válido')
