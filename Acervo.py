@@ -1,4 +1,5 @@
 from Fossil import Fossil
+import conhecimentossobrefosseis as dictconhecimento
 import random
 
 class Acervo:
@@ -10,7 +11,7 @@ class Acervo:
         return self.__fosseis
     
 
-    def __adicionar_fossil(self, dinossauro:str,categoria:str, parte:str, idade:int):
+    def __adicionar_fossil(self, dinossauro:str,categoria:str, parte:str, idade:int, historia:str):
         novoID = dinossauro[:2].upper()
         while len(novoID)<=3:
             num = random.randint(100000,999999)
@@ -22,6 +23,7 @@ class Acervo:
                 novoID += str(num)
 
         novoFossil = Fossil(novoID, dinossauro, categoria, parte, idade)
+        dictconhecimento[novoID] = historia
         self.__fosseis.append(novoFossil)
         print('Fóssil adicionado no acervo!')
 
@@ -32,6 +34,7 @@ class Acervo:
             if fossil.getID() == id:
                 encontrado = True
                 self.__fosseis.remove(fossil)
+                dictconhecimento.pop(fossil.getID())
                 print(f'O seguinte fóssil foi excluído:\nID:{fossil.getID()}\nDinossauro:{fossil.getDinossauro()}\nCategoria:{fossil.getCategoria()}\nParte:{fossil.getParte()}\nIdade:{fossil.getIdade()}')
         if not encontrado:
             print('Nenhum fóssil com esse ID foi encontrado em nosso acervo.')
@@ -47,8 +50,9 @@ class Acervo:
             categoria = input('Digite o tipo da alimentação do dinossauro (Herbivoro, Carnivoro ou Onivoro): ')
             parteDino = input('Digite a parte do corpo do dinossauro a que se refere o fóssil: ')
             idadeFossil = input('Informe a idade do fóssil: ')
+            historia = input('Qual a história do fóssil?')
             
-            self.__adicionar_fossil(nomeDino,categoria,parteDino,idadeFossil)
+            self.__adicionar_fossil(nomeDino,categoria,parteDino,idadeFossil, historia)
 
         else:
             print('Só há duas opções: 1 para adicionar e 2 para excluir algum fóssil.')
