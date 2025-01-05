@@ -115,18 +115,18 @@ def homepage_visi(vi_verificado, visitante, acervodisp):
             acervodisp.listar()
 
         elif funcao == 2:
-            if not guiaEscolhido:
-                guia_esc = guia()
+            if visitante.getGuia() == None:
+                visitante.setGuia(guia())
             guiaEscolhido = True #aqui o visitante já escolheu o guia dele
             for fossil in acervodisp.getFosseis():
                 print(f'Nome do dinossauro: {fossil.getDinossauro()}\nHábito alimentar do dinossauro: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}\n')
-                print(guia_esc.historiaFossil(fossil))
+                print(visitante.getGuia().historiaFossil(fossil))
                 input('\n\nQuando estiver pronto para seguir em frente, press enter.\n')
         
         elif funcao == 3:
-            if not guiaEscolhido:
-                guia_esc = guia()
-            print(guia.getNome(),':\n',guia_esc.historiaMuseu())
+            if visitante.getGuia() == None:
+                visitante.setGuia(guia())
+            print(visitante.getGuia().getNome(),':\n',visitante.getGuia().historiaMuseu())
 
         elif funcao == 4:
             modo = 0
@@ -143,8 +143,6 @@ def homepage_visi(vi_verificado, visitante, acervodisp):
             print('Esse valor não está disponível para acesso. Digite um valor válido')
     else:
         print('Crie uma conta ou conecte-se para acessar nosso museu')
-
-            
 
 
 def homepage_func(fu_verificado, funcionario, acervodisp):

@@ -50,7 +50,7 @@ class Acervo:
             categoria = input('Digite o tipo da alimentação do dinossauro (Herbivoro, Carnivoro ou Onivoro): ')
             parteDino = input('Digite a parte do corpo do dinossauro a que se refere o fóssil: ')
             idadeFossil = input('Informe a idade do fóssil: ')
-            historia = input('Qual a história do fóssil?')
+            historia = input('Qual a história do fóssil?\n> ')
             
             self.__adicionar_fossil(nomeDino,categoria,parteDino,idadeFossil, historia)
 
