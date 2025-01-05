@@ -1,12 +1,13 @@
-import museuDino as museu
+import funcoes
 from visitante_classe import Visitante
 from funcionario_classe import Funcionario
 from Guia import Guia
 from Acervo import Acervo
 from Fossil import Fossil
 import conhecimentossobrefosseis as consf
-import os
+from acervoMuseu import acervoDino
 
+import os
 
 
 
@@ -34,3 +35,12 @@ print('|   | \  \  |  |_|  | |  |_> | |  |____  |  |\ \     |  |    |  |_|  |   
 print('|___|  \__\ |_______| |_____/  |_______| |__| \_\    |__|    |_______|   |___|        |___| /__/      \__\ |__| \_\ |__| |__| \__| |_______|')
 input('\n\nPress enter para seguir: ')
 os.system('cls' if os.name=='nt' else 'clear')
+
+verificado, person = funcoes.entrada()
+continuar = 'S'
+while continuar.upper() in ['S', 'SIM']:
+    print('')
+    person.acessar_homepage(verificado, acervoDino)
+
+
+    continuar = input('\n\nVocê quer continuar?\n> ').strip().upper()

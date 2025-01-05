@@ -1,22 +1,22 @@
 from abc import ABC, abstractmethod
 class Pessoa(ABC):
     def __init__(self, nome, cpf, dataNascimento, email, senha):
-        self.nome = nome
+        self.__nome = nome.title()
         self._cpf = cpf
-        self.dataNascimento = dataNascimento
+        self.__dataNascimento = dataNascimento
         self._email = email
         self.__senha = senha
 
     def getnome(self):
-        return self.nome
+        return self.__nome
     def getdatanascimento(self):
-        return self.dataNascimento
+        return self.__dataNascimento
     def getemail(self):
         return self._email
     def __getsenha(self):
         return self.__senha
     def verificacao(self, senha):
-        if self.__getsenha == senha:
+        if self.__getsenha() == senha:
             return True
         else:
             return False
@@ -43,9 +43,26 @@ class Pessoa(ABC):
                 print('Senha alterada com sucesso!')
             else:
                 print('CPF inválido!')
-    @abstractmethod
-    def falar(self):
-        pass
+
+    def acessar_homepage(self, acervodisp):
+        print('Olá, {}!'.format(self.__nome))
+        funcao = int(input('Você deseja:\n1- Vizualizar acervo\n2- Procurar fóssil\n> '))
+        if funcao == 1:
+            acervodisp.listar()
+        elif funcao == 2: 
+            modo = 0
+            while modo not in (1, 2, 3):
+                modo = int(input('Você deseja encontrar o fóssil\n1-ID do fóssil\n2-Nome do dinossauro\n3-Hábito alimentar do dinossauro\n> '))
+                if modo == 1:
+                    pesquisa = input('Digite o ID do fóssil: ')
+                elif modo in (2, 3):
+                    pesquisa = input(f'O que você está procurando no modo {modo}?')
+                else:
+                    print('Digite um valor correspondente aos citados!')
+            acervodisp.encontrar_fossil(pesquisa, modo)
+        else:
+            print('Esse valor não está disponível para acesso. Digite um valor válido')
+        
         
         
     

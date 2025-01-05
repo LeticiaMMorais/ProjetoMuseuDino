@@ -8,8 +8,29 @@ class Funcionario(Pessoa):
     def vizualizar_id(self):
         return self.__identificador
     def editar_acervo(self):
-        item = int(input('Desejo editar o item: '))
+        item = int(input('\n1- Adicionar novo fóssil ao acervo\n2- Excluir fóssil do acervo\nDesejo editar o item: '))
         return item
-    def falar(self):
-        espaco = 5*''
-        print(f'Você deseja:\n1. Vizualizar acervo {espaco}2. Pesquisar Fóssil {espaco}3. Sobre nossa equipe')
+
+    def acessar_homepage(self, fu_verificado, acervodisp):
+        if fu_verificado:
+            print('Olá, funcionário!')
+            funcao = int(input('Você deseja:\n1- Vizualizar acervo\n2- Procurar fóssil\n3- Editar acervo\n> '))
+            if funcao == 1:
+                acervodisp.listar()
+            elif funcao == 2: 
+                modo = 0
+                while modo not in (1, 2, 3):
+                    modo = int(input('Você deseja encontrar o fóssil\n1-ID do fóssil\n2-Nome do dinossauro\n3-Hábito alimentar do dinossauro\n> '))
+                    if modo == 1:
+                        pesquisa = input('Digite o ID do fóssil: ')
+                    elif modo in (2, 3):
+                        pesquisa = input(f'O que você está procurando no modo {modo}?')
+                    else:
+                        print('Digite um valor correspondente aos citados!')
+                acervodisp.encontrar_fossil(pesquisa, modo)
+            elif funcao == 3:
+                acervodisp.edicao(self.editar_acervo())
+            else:
+                print('Esse valor não está disponível para acesso. Digite um valor válido')
+        else:
+            print('Crie uma conta ou conecte-se para acessar nosso museu')
