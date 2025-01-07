@@ -20,10 +20,11 @@ class Guia:
         self.__conhecimento = conhecimento_atual
 
     def historiaMuseu(self):
-        return 'O Museu Renato Marino foi inaugurado em 2021 quando o senhor Gilberto Marino, fundador do museu, descobriu em uma formação rochosa, próximo a sua casa, um fóssil de Ubirajara Jubatus. Para um amante de dinossauros, que cresceu vendo o trabalho de seu pai — Renato Marino, um grande paleontólogo que tinha um carinho especial pelos dinossauros — aquele momento foi tão inspirador e glorioso que ele decidiu construir um museu para a preservar a memória dos “gigantes” ancestrais e, assim, homenagear seu pai e compartilhar o conhecimento adquirido pelo mesmo. '
+        return '\nO Museu Renato Marino foi inaugurado em 2021 quando o senhor Gilberto Marino, fundador do museu, descobriu em uma formação rochosa, próximo a sua casa, um fóssil de Ubirajara Jubatus. Para um amante de dinossauros, que cresceu vendo o trabalho de seu pai — Renato Marino, um grande paleontólogo que tinha um carinho especial pelos dinossauros — aquele momento foi tão inspirador e glorioso que ele decidiu construir um museu para a preservar a memória dos “gigantes” ancestrais e, assim, homenagear seu pai e compartilhar o conhecimento adquirido pelo mesmo. '
     
     def historiaFossil(self, fossil:Fossil):
         if fossil.getID() in self.__conhecimento.keys():
+            print(f'   {self.getNome}:')
             return self.__conhecimento[fossil.getID()]
         else:
             return 'Sinto muito, mas ainda não tenho conhecimento o suficiente sobre esse fóssil.'

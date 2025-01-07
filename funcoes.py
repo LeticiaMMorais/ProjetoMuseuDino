@@ -4,9 +4,13 @@ from Guia import Guia
 from Acervo import Acervo
 from Fossil import Fossil
 import conhecimentossobrefosseis as consf
+import os
 
 funcionarios = []
 visitantes = []
+
+def limpar():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 def entrada():
     global funcionarios, visitantes
@@ -14,6 +18,7 @@ def entrada():
     def signin():
         global funcionarios, visitantes
         situacao = input('Sua conta será de funcionário ou de visitante? ').strip()
+        limpar()
         print('\nVamos começar seu cadastro! Complete os dados abaixo\n')
         nome = input('Qual seu nome? ')
         cpf = input('Qual seu CPF? ')
@@ -32,18 +37,22 @@ def entrada():
             if verify(visitantes, email):
                 person = Visitante(nome, cpf, dataNascimento, email, senha)
                 visitantes.append(person)
+                print('Conta criada com sucesso!')
         elif situacao.lower() in ('funcionario', 'funcionário'):
             if verify(funcionarios, email):
                 person = Funcionario(nome, cpf, dataNascimento, email, senha)
                 funcionarios.append(person)
                 print('Seu ID é: {}'.format(person.vizualizar_id()))
+                print('Conta criada com sucesso!')
         else:
             print('   Parece que você digitou incorretamente. Tente novamente!')
+        limpar()
         
     def login(funcionarios, visitantes):
         global verificado
         print('\nVamos fazer seu login?')
         situation = input('Você é visitante ou funcionário? ')
+        limpar()
         if situation.lower() == 'visitante':
             email = input('Insira seu email: ')
             print(visitantes)
@@ -52,7 +61,8 @@ def entrada():
                     currentv = v
             
             senha = input('insira sua senha (Esqueceu a senha? Digite y para muda-la): ')
-            if senha.lower() == 'y':    
+            limpar()
+            if senha.lower() == 'y':
                 currentv.mudarsenha() 
             else:
                 if currentv.verificacao(senha):
@@ -72,6 +82,7 @@ def entrada():
                 if f.vizualizar_id() == id:
                     currentf = f
             senha = input('insira sua senha (Esqueceu a senha? Digite y para muda-la): ')
+            limpar()
             if senha.lower() == 'y':    
                 currentf.mudarsenha() 
             else:
@@ -86,6 +97,7 @@ def entrada():
 
 
     start = int(input('Museu Roberto Marino\n1- Criar uma conta\n2- Entrar numa conta existente\n> '))
+    limpar()
     if start == 1:
         signin()
         pessoa = login(funcionarios, visitantes)
@@ -95,3 +107,4 @@ def entrada():
         print('Escolha uma opção adequada, por favor!')
         entrada()
     return verificado, pessoa
+

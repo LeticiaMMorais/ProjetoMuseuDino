@@ -1,6 +1,7 @@
 from pessoa_classe import Pessoa
 import conhecimentossobrefosseis as consf
 from Guia import Guia
+import funcoes
 
 class Visitante(Pessoa):
     def __init__(self, nome, cpf, dataNascimento, email, senha):
@@ -41,9 +42,10 @@ class Visitante(Pessoa):
         
 
         if vi_verificado: #vi_verificado é para saber se a senha estava correta(True) ou incorreta(False) na hora de entrar.
+            funcoes.limpar()
             print('Olá, {}!'.format(self.getnome()))
-            funcao = int(input('Você deseja:\n1- Vizualizar acervo (por conta própria)\n2- Vizualizar acervo com um guia\n3- Conhecer a história do Museu\n4- Procurar fóssil\n5- Sobre a equipe Roberto Marino\n> '))
-            guiaEscolhido = False
+            funcao = int(input('Você deseja:\n1- Vizualizar acervo (por conta própria)\n2- Vizualizar acervo com um guia\n3- Conhecer a história do Museu\n4- Procurar fóssil\n5- Sobre a equipe Roberto Marino\n6- Sair\n> '))
+            funcoes.limpar()
 
             if funcao == 1:
                 acervodisp.listar()
@@ -51,10 +53,11 @@ class Visitante(Pessoa):
             elif funcao == 2:
                 if self.getGuia() == None:
                     self.setGuia(guia())
-                guiaEscolhido = True #aqui o visitante já escolheu o guia dele
                 for fossil in acervodisp.getFosseis():
-                    print(f'Nome do dinossauro: {fossil.getDinossauro()}\nHábito alimentar do dinossauro: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}\n')
-                    print(self.getGuia().historiaFossil(fossil))
+                    print(f'Nome científico do dinossauro: {fossil.getDinossauro()}\nNome popular do dinossauro: {fossil.getDinoPopular()}\nHábito alimentar do dinossauro: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}')
+                    if fossil.getURLimagem() != None:
+                        print('URL da imagem do fóssil: {fossil.getURLimagem()}')
+                    print('\n'+self.getGuia().historiaFossil(fossil))
                     input('\n\nQuando estiver pronto para seguir em frente, press enter.\n')
             
             elif funcao == 3:
@@ -76,12 +79,10 @@ class Visitante(Pessoa):
 
             elif funcao == 5:
                 print("Nossa equipe é composta pelas programadoras Angelina Brito e Letícia Morais, que fizeram esse projeto se estender e virar um programa e pelos nossos queridos funcionários que fazem a administração do museu.")
-
+            elif funcao == 6:
+                return True
             else:
                 print('Esse valor não está disponível para acesso. Digite um valor válido')
         else:
             print('Crie uma conta ou conecte-se para acessar nosso museu')
-
-let = Visitante('Letícia Maria', '128.394.456-39','04/03/2008','leticia@gmail.com','Alecrimdourado')
-print(let.verificacao('Alecrimdourado'))
 

@@ -11,7 +11,7 @@ class Acervo:
         return self.__fosseis
     
 
-    def __adicionar_fossil(self, dinossauro:str,categoria:str, parte:str, idade:int, historia:str):
+    def __adicionar_fossil(self, dinossauro:str,nomePop:str,categoria:str, parte:str, idade:int, historia:str, urlImagem:str=None):
         novoID = dinossauro[:2].upper()
         while len(novoID)<=3:
             num = random.randint(100000,999999)
@@ -21,8 +21,8 @@ class Acervo:
                     igual = True
             if not igual:
                 novoID += str(num)
-
-        novoFossil = Fossil(novoID, dinossauro, categoria, parte, idade)
+        
+        novoFossil = Fossil(novoID, dinossauro, nomePop, categoria, parte, idade, urlImagem)
         dictconhecimento[novoID] = historia
         self.__fosseis.append(novoFossil)
         print('Fóssil adicionado no acervo!')
@@ -41,27 +41,54 @@ class Acervo:
 
 
     def edicao(self,edit:int):
-        if edit == 2:
-            id_dinossauro = input('\nCerto, digite o ID do dinossauro que quer excluir: ')
-            self.__excluir_fossil(id_dinossauro)
-
-        elif edit == 1:
-            nomeDino = input('Digite o nome do dinossauro a que pertence o fóssil: ')
+        if edit == 1:
+            nomeDino = input('Digite o nome científico do dinossauro a que pertence o fóssil: ')
+            nomePopDino = input('Agora a forma que ele é geralmente chamado pelas pessoas: ')
             categoria = input('Digite o tipo da alimentação do dinossauro (Herbivoro, Carnivoro ou Onivoro): ')
             parteDino = input('Digite a parte do corpo do dinossauro a que se refere o fóssil: ')
             idadeFossil = input('Informe a idade do fóssil: ')
             historia = input('Qual a história do fóssil?\n> ')
-            
-            self.__adicionar_fossil(nomeDino,categoria,parteDino,idadeFossil, historia)
+            url = input('Informe a URL da imagem (se quiser adicionar só depois, digite D):\n> ').strip()
+
+            if url.upper() =='S':
+                self.__adicionar_fossil(nomeDino,nomePopDino,parteDino,idadeFossil, historia)
+            else:
+                self.__adicionar_fossil(nomeDino,nomePopDino,parteDino,idadeFossil, historia, url)
+
+        elif edit == 2:
+                id_dinossauro = input('\nCerto, digite o ID do dinossauro que quer excluir: ')
+                self.__excluir_fossil(id_dinossauro)
+
+        elif edit == 3:
+            pesquisa = input('Informe o ID do fóssil que vai adicionar a URL da imagem: ')
+            encontrado = False
+            for fossil in self.__fosseis:
+                if fossil.getID() == pesquisa:
+                    print('Foi encontrado o fóssil:\n')
+                    print(f'ID: {fossil.getID()}\nNome científico do dinossauro: {fossil.getDinossauro()}\nHábito alimentar do dinossauro: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}')
+                    if fossil.getURLimagem() != None:
+                        print('URL para imagem do fóssil: {}'.format(fossil.getURLimagem()))
+
+                    querIr = input('\nQuer mesmo alterar ou adicionar uma URL no registro desse fóssil? ').strip().upper()
+                    if querIr in ['S', 'SIM']:
+                        fossil.setURLimagem(input('\nInforme a nova URL: '))
+                        encontrado = True
+                        break
+            if not encontrado:
+                print('      Não foi encontrado nenhum fóssil com esse ID.')
+                    
 
         else:
-            print('Só há duas opções: 1 para adicionar e 2 para excluir algum fóssil.')
+            print('Só há três opções: 1 para adicionar e 2 para excluir algum fóssil, 3 para adicionar uma URL de imagem a um fóssil já existente.')
 
 
     def listar(self):
         print('Aqui estão os fósseis do nosso acervo: \n')
         for fossil in self.__fosseis:
-            print(f'ID: {fossil.getID()}\nDinossauro: {fossil.getDinossauro()}\nCategoria: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}\n')
+            print(f'ID: {fossil.getID()}\nNome científico do dinossauro: {fossil.getDinossauro()}\nHábito alimentar do dinossauro: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}')
+            if fossil.getURLimagem() != None:
+                print('URL para imagem do fóssil: {}'.format(fossil.getURLimagem()))
+            print()
         print("      Você chegou ao fim do acervo.")
 
 
@@ -80,6 +107,9 @@ class Acervo:
             elif modo == 2:
                 if fossil.getDinossauro().upper() == pesquisa.upper():
                     listaEncontrados.append(fossil)
+                elif fossil.getDinoPopular().upper() == pesquisa.upper():
+                    listaEncontrados.append(fossil)
+                
             elif modo == 3:
                 if fossil.getCategoria().upper() == pesquisa.upper():
                     listaEncontrados.append(fossil)
@@ -95,7 +125,10 @@ class Acervo:
         else:
             print('Aqui estão os fósseis encontrados: \n')
             for fossil in listaEncontrados:
-                print(f'ID: {fossil.getID()}\nDinossauro: {fossil.getDinossauro()}\nCategoria: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}\n')
-                print("      Você chegou ao fim do resultado.")
+                print(f'ID: {fossil.getID()}\nNome científico do dinossauro: {fossil.getDinossauro()}\nHábito alimentar do dinossauro: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}')
+                if fossil.getURLimagem() != None:
+                    print('URL para imagem do fóssil: {}'.format(fossil.getURLimagem()))
+                print()
+            print("      Você chegou ao fim do resultado.")
             
         

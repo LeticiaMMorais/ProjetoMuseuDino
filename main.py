@@ -1,12 +1,7 @@
 import funcoes
 from visitante_classe import Visitante
 from funcionario_classe import Funcionario
-from Guia import Guia
-from Acervo import Acervo
-from Fossil import Fossil
-import conhecimentossobrefosseis as consf
 from acervoMuseu import acervoDino
-
 import os
 
 
@@ -34,13 +29,13 @@ print('|   |\  \   |  | |  | |   _ \  |   ____| |     /     |  |    |  | |  |   
 print('|   | \  \  |  |_|  | |  |_> | |  |____  |  |\ \     |  |    |  |_|  |   |   | \____/ |   |  /  ______  \  |  |\ \  |  | |  |\   | |  |_|  |')
 print('|___|  \__\ |_______| |_____/  |_______| |__| \_\    |__|    |_______|   |___|        |___| /__/      \__\ |__| \_\ |__| |__| \__| |_______|')
 input('\n\nPress enter para seguir: ')
-os.system('cls' if os.name=='nt' else 'clear')
-
+funcoes.limpar()
 verificado, person = funcoes.entrada()
 continuar = 'S'
 while continuar.upper() in ['S', 'SIM']:
-    print('')
-    person.acessar_homepage(verificado, acervoDino)
+    if person.acessar_homepage(verificado, acervoDino):
+        verificado, person = funcoes.entrada()
 
 
     continuar = input('\n\nVocê quer continuar?\n> ').strip().upper()
+    funcoes.limpar()
