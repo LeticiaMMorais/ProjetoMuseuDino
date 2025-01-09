@@ -14,13 +14,14 @@ class Funcionario(Pessoa):
         return item
 
     def acessar_homepage(self, fu_verificado, acervodisp):
+        funcoes.limpar()
         if fu_verificado:
-            funcoes.limpar()
             print('Olá, funcionário!')
-            funcao = int(input('Você deseja:\n1- Vizualizar acervo\n2- Procurar fóssil\n3- Editar acervo\n4- Sair\n> '))
+            funcao = int(input('Você deseja:\n1- Vizualizar acervo\n2- Procurar fóssil\n3- Editar acervo\n4- Entrar com outra conta\n5- Sair\n>  '))
             funcoes.limpar()
             if funcao == 1:
                 acervodisp.listar()
+                input('\nPress enter para voltar a tela inicial: ')
             elif funcao == 2: 
                 modo = 0
                 while modo not in (1, 2, 3):
@@ -33,10 +34,14 @@ class Funcionario(Pessoa):
                     else:
                         print('Digite um valor correspondente aos citados!')
                 acervodisp.encontrar_fossil(pesquisa, modo)
+                input('Press enter para voltar a tela inicial: ')
+
             elif funcao == 3:
                 acervodisp.edicao(self.editar_acervo())
             elif funcao == 4:
                 return True
+            elif funcao == 5:
+                return False
             else:
                 print('Esse valor não está disponível para acesso. Digite um valor válido')
         else:

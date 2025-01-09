@@ -21,8 +21,12 @@ class Pessoa(ABC):
         else:
             return False
     def mudarsenha(self):
-        esc = input('Digite sua senha antiga (caso não saiba digite 1 para mudar pelo CPF): ')
-        if esc != '1':
+        esc = ''
+        while esc not in [self.__getsenha(), '1']:
+            esc = input('Digite sua senha antiga (caso não saiba digite 1 para mudar pelo CPF): ')
+            if esc not in [self.__getsenha(), '1']:
+                print('Digite um valor válido!')
+        if esc == self.__getsenha():
             senha_antiga = esc
             if senha_antiga == self.__getsenha():
                 while True:
@@ -35,7 +39,7 @@ class Pessoa(ABC):
                         print('Digite novamente uma senha que não seja a mesma que sua antiga!')
             else:
                 print('Senha incorreta')
-        else:
+        elif esc == '1':
             cpf_v = input('Digite seu CPF: ')
             if cpf_v == self._cpf:
                 nova_senha = input('Digite sua nova senha: ')

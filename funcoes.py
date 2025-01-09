@@ -17,22 +17,28 @@ def entrada():
 
     def signin():
         global funcionarios, visitantes
-        situacao = input('Sua conta será de funcionário ou de visitante? ').strip()
+        situacao = ''
+        while situacao.lower() not in ['visitante', 'funcionario', 'funcionário']:
+            situacao = input('Sua conta será de funcionário ou de visitante? ').strip()
+            if situacao.lower() not in ['visitante', 'funcionario', 'funcionário']:
+                print('     Valor digitado inválido!')
         limpar()
-        print('\nVamos começar seu cadastro! Complete os dados abaixo\n')
-        nome = input('Qual seu nome? ')
-        cpf = input('Qual seu CPF? ')
-        dataNascimento = input('Qual a sua data de nascimento? ')
-        email = input('Qual o seu Email? ')
-        senha = input('Crie uma senha: ')
-
+        
         def verify(situation, email):
             for p in situation:
                 if p.getemail() == email:
                     print('   Esse email já está cadastrado, tente com outro ou entre na sua conta')
                     return False
             return True
-                
+        
+        print('\nVamos começar seu cadastro! Complete os dados abaixo\n')
+        nome = input('Qual seu nome? ')
+        cpf = input('Qual seu CPF? ')
+        dataNascimento = input('Qual a sua data de nascimento? ')
+        email = input('Qual o seu Email? ')
+        senha = input('Crie uma senha: ')
+        limpar()
+            
         if situacao.lower() == 'visitante':
             if verify(visitantes, email):
                 person = Visitante(nome, cpf, dataNascimento, email, senha)
@@ -44,18 +50,19 @@ def entrada():
                 funcionarios.append(person)
                 print('Seu ID é: {}'.format(person.vizualizar_id()))
                 print('Conta criada com sucesso!')
-        else:
-            print('   Parece que você digitou incorretamente. Tente novamente!')
-        limpar()
+
         
     def login(funcionarios, visitantes):
         global verificado
         print('\nVamos fazer seu login?')
-        situation = input('Você é visitante ou funcionário? ')
+        situation = ''
+        while situation.lower() not in ['funcionario', 'funcionário', 'visitante']:
+            situation = input('Você é visitante ou funcionário? ')
+            if situation.lower() not in ['visitante', 'funcionario', 'funcionário']:
+                print('     Valor digitado inválido!')
         limpar()
         if situation.lower() == 'visitante':
             email = input('Insira seu email: ')
-            print(visitantes)
             for v in visitantes:
                 if v.getemail() == email:
                     currentv = v
@@ -63,7 +70,8 @@ def entrada():
             senha = input('insira sua senha (Esqueceu a senha? Digite y para muda-la): ')
             limpar()
             if senha.lower() == 'y':
-                currentv.mudarsenha() 
+                currentv.mudarsenha()
+                verificado = True 
             else:
                 if currentv.verificacao(senha):
                     print('Bem-vindo(a) de volta!')
@@ -84,7 +92,8 @@ def entrada():
             senha = input('insira sua senha (Esqueceu a senha? Digite y para muda-la): ')
             limpar()
             if senha.lower() == 'y':    
-                currentf.mudarsenha() 
+                currentf.mudarsenha()
+                verificado = True 
             else:
                 if currentf.verificacao(senha):
                     print(f'Bem-vindo(a) de volta funcionário {currentf.getnome().title()}!')
@@ -94,6 +103,9 @@ def entrada():
                     print('Senha incorreta!')
                     verificado = False
             return currentf
+
+        else:
+            print('Digite um valor válido!')
 
 
     start = int(input('Museu Roberto Marino\n1- Criar uma conta\n2- Entrar numa conta existente\n> '))

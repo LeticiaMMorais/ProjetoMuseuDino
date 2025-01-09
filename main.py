@@ -33,9 +33,13 @@ funcoes.limpar()
 verificado, person = funcoes.entrada()
 continuar = 'S'
 while continuar.upper() in ['S', 'SIM']:
-    if person.acessar_homepage(verificado, acervoDino):
+    confirmar = person.acessar_homepage(verificado, acervoDino)
+    if confirmar == None:
+        pass
+    elif confirmar:
         verificado, person = funcoes.entrada()
-
-
-    continuar = input('\n\nVocê quer continuar?\n> ').strip().upper()
-    funcoes.limpar()
+        funcoes.limpar()
+    elif not confirmar:
+        continuar = 'N'
+    
+    

@@ -44,11 +44,12 @@ class Visitante(Pessoa):
         if vi_verificado: #vi_verificado é para saber se a senha estava correta(True) ou incorreta(False) na hora de entrar.
             funcoes.limpar()
             print('Olá, {}!'.format(self.getnome()))
-            funcao = int(input('Você deseja:\n1- Vizualizar acervo (por conta própria)\n2- Vizualizar acervo com um guia\n3- Conhecer a história do Museu\n4- Procurar fóssil\n5- Sobre a equipe Roberto Marino\n6- Sair\n> '))
+            funcao = int(input('Você deseja:\n1- Vizualizar acervo (por conta própria)\n2- Vizualizar acervo com um guia\n3- Conhecer a história do Museu\n4- Procurar fóssil\n5- Sobre a equipe Roberto Marino\n6- Entrar com outra conta\n7- Sair\n> '))
             funcoes.limpar()
 
             if funcao == 1:
                 acervodisp.listar()
+                input('\nPress enter para voltar a tela inicial: ')
 
             elif funcao == 2:
                 if self.getGuia() == None:
@@ -56,7 +57,7 @@ class Visitante(Pessoa):
                 for fossil in acervodisp.getFosseis():
                     print(f'Nome científico do dinossauro: {fossil.getDinossauro()}\nNome popular do dinossauro: {fossil.getDinoPopular()}\nHábito alimentar do dinossauro: {fossil.getCategoria()}\nParte do corpo: {fossil.getParte()}\nIdade:{fossil.getIdade()}')
                     if fossil.getURLimagem() != None:
-                        print('URL da imagem do fóssil: {fossil.getURLimagem()}')
+                        print(f'URL da imagem do fóssil: {fossil.getURLimagem()}')
                     print('\n'+self.getGuia().historiaFossil(fossil))
                     input('\n\nQuando estiver pronto para seguir em frente, press enter.\n')
             
@@ -64,6 +65,7 @@ class Visitante(Pessoa):
                 if self.getGuia() == None:
                     self.setGuia(guia())
                 print(self.getGuia().getNome(),':\n',self.getGuia().historiaMuseu())
+                input('Press enter para voltar a tela inicial: ')
 
             elif funcao == 4:
                 modo = 0
@@ -76,11 +78,15 @@ class Visitante(Pessoa):
                     else:
                         print('Digite um valor correspondente aos citados!')
                 acervodisp.encontrar_fossil(pesquisa, modo)
+                input('Press enter para voltar a tela inicial: ')
 
             elif funcao == 5:
                 print("Nossa equipe é composta pelas programadoras Angelina Brito e Letícia Morais, que fizeram esse projeto se estender e virar um programa e pelos nossos queridos funcionários que fazem a administração do museu.")
+                input('Press enter para voltar a tela inicial: ')
             elif funcao == 6:
                 return True
+            elif funcao == 7:
+                return False
             else:
                 print('Esse valor não está disponível para acesso. Digite um valor válido')
         else:

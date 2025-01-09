@@ -24,7 +24,7 @@ class Guia:
     
     def historiaFossil(self, fossil:Fossil):
         if fossil.getID() in self.__conhecimento.keys():
-            print(f'   {self.getNome}:')
+            print(f'   {self.getNome()}:')
             return self.__conhecimento[fossil.getID()]
         else:
             return 'Sinto muito, mas ainda não tenho conhecimento o suficiente sobre esse fóssil.'
