@@ -78,6 +78,8 @@ class Acervo:
                         break
             if not encontrado:
                 print('      Não foi encontrado nenhum fóssil com esse ID.')
+
+                input('\n\nPress enter para voltar a tela inicial: ')
                     
 
         else:

@@ -2,7 +2,6 @@ import funcoes
 from visitante_classe import Visitante
 from funcionario_classe import Funcionario
 from acervoMuseu import acervoDino
-import os
 
 
 
