@@ -22,7 +22,7 @@ class Funcionario(Pessoa):
     def acessar_homepage(self, fu_verificado, acervodisp):
         funcoes.limpar()
         if fu_verificado:
-            print('Olá, funcionário!')
+            print('Olá, funcionário(a) {}!'.format(self.getnome()))
             funcao = int(input('Você deseja:\n1- Vizualizar acervo\n2- Procurar fóssil\n3- Editar acervo\n4- Visualizar perfil\n5- Entrar com outra conta\n6- Sair\n>  '))
             funcoes.limpar()
             if funcao == 1:

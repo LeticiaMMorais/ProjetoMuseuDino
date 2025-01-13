@@ -35,7 +35,7 @@ def entrada():
         nome = input('Qual seu nome? ')
         cpf = input('Qual seu CPF? ')
         dataNascimento = input('Qual a sua data de nascimento? ')
-        email = input('Qual o seu Email? ')
+        email = input('Qual o seu e-mail? ')
         senha = input('Crie uma senha: ')
         limpar()
             

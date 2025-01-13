@@ -15,7 +15,7 @@ class Visitante(Pessoa):
         return self.__guia
     
     def ver_perfil(self):
-        print(f'SEUS DADOS:\nNome: {self.getnome()}\nCPF: {self.getCPF()}\nData de nascimento: {self.getdatanascimento()}\nE-mail: {self.getemail}')
+        print(f'SEUS DADOS:\nNome: {self.getnome()}\nCPF: {self.getCPF()}\nData de nascimento: {self.getdatanascimento()}\nE-mail: {self.getemail()}')
 
     def acessar_homepage(self, vi_verificado, acervodisp):
         def guia():
@@ -37,6 +37,7 @@ class Visitante(Pessoa):
                     if guia_escolher.getNome() == escolhido.title():
                         guia_esc = guia_escolher
                         encontrado = True
+                        funcoes.limpar()
                         print('Certo, então {} lhe acompanhará nesta sessão.'.format(guia_esc.getNome()))
                 if not encontrado:
                     print('     Não foi encontrado nenhum guia com esse nome. Tente novamente:')
@@ -63,6 +64,7 @@ class Visitante(Pessoa):
                         print(f'URL da imagem do fóssil: {fossil.getURLimagem()}')
                     print('\n'+self.getGuia().historiaFossil(fossil))
                     input('\n\nQuando estiver pronto para seguir em frente, press enter.\n')
+                    funcoes.limpar()
             
             elif funcao == 3:
                 if self.getGuia() == None:
