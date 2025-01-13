@@ -9,6 +9,8 @@ class Pessoa(ABC):
 
     def getnome(self):
         return self.__nome
+    def getCPF(self):
+        return self._cpf
     def getdatanascimento(self):
         return self.__dataNascimento
     def getemail(self):

@@ -13,6 +13,9 @@ class Visitante(Pessoa):
 
     def getGuia(self):
         return self.__guia
+    
+    def ver_perfil(self):
+        print(f'SEUS DADOS:\nNome: {self.getnome()}\nCPF: {self.getCPF()}\nData de nascimento: {self.getdatanascimento()}\nE-mail: {self.getemail}')
 
     def acessar_homepage(self, vi_verificado, acervodisp):
         def guia():
@@ -44,7 +47,7 @@ class Visitante(Pessoa):
         if vi_verificado: #vi_verificado é para saber se a senha estava correta(True) ou incorreta(False) na hora de entrar.
             funcoes.limpar()
             print('Olá, {}!'.format(self.getnome()))
-            funcao = int(input('Você deseja:\n1- Vizualizar acervo (por conta própria)\n2- Vizualizar acervo com um guia\n3- Conhecer a história do Museu\n4- Procurar fóssil\n5- Sobre a equipe Roberto Marino\n6- Entrar com outra conta\n7- Sair\n> '))
+            funcao = int(input('Você deseja:\n1- Vizualizar acervo (por conta própria)\n2- Vizualizar acervo com um guia\n3- Conhecer a história do Museu\n4- Procurar fóssil\n5- Sobre a equipe Roberto Marino\n6- Vizualizar perfil\n7- Entrar com outra conta\n8- Sair\n> '))
             funcoes.limpar()
 
             if funcao == 1:
@@ -84,8 +87,11 @@ class Visitante(Pessoa):
                 print("Nossa equipe é composta pelas programadoras Angelina Brito e Letícia Morais, que fizeram esse projeto se estender e virar um programa e pelos nossos queridos funcionários que fazem a administração do museu.")
                 input('Press enter para voltar a tela inicial: ')
             elif funcao == 6:
-                return True
+                self.ver_perfil()
+                input('\nPress enter para voltar a tela inicial: ')
             elif funcao == 7:
+                return True
+            elif funcao == 8:
                 return False
             else:
                 print('Esse valor não está disponível para acesso. Digite um valor válido')
