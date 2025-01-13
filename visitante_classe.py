@@ -91,4 +91,5 @@ class Visitante(Pessoa):
                 print('Esse valor não está disponível para acesso. Digite um valor válido')
         else:
             print('Crie uma conta ou conecte-se para acessar nosso museu')
+            return True
 

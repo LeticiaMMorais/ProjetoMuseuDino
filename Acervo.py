@@ -1,5 +1,5 @@
 from Fossil import Fossil
-import conhecimentossobrefosseis as dictconhecimento
+from conhecimentossobrefosseis import conhecimentosobrefosseis as dictconhecimento
 import random
 
 class Acervo:
@@ -23,7 +23,7 @@ class Acervo:
                 novoID += str(num)
         
         novoFossil = Fossil(novoID, dinossauro, nomePop, categoria, parte, idade, urlImagem)
-        dictconhecimento[novoID] = historia
+        dictconhecimento[novoFossil.getID()] = historia
         self.__fosseis.append(novoFossil)
         print('Fóssil adicionado no acervo!')
 
@@ -31,13 +31,15 @@ class Acervo:
     def __excluir_fossil(self,id:str):
         encontrado = False
         for fossil in self.__fosseis:
-            if fossil.getID() == id:
+            if fossil.getID() == id.upper():
                 encontrado = True
                 self.__fosseis.remove(fossil)
                 dictconhecimento.pop(fossil.getID())
                 print(f'O seguinte fóssil foi excluído:\nID:{fossil.getID()}\nDinossauro:{fossil.getDinossauro()}\nCategoria:{fossil.getCategoria()}\nParte:{fossil.getParte()}\nIdade:{fossil.getIdade()}')
         if not encontrado:
             print('Nenhum fóssil com esse ID foi encontrado em nosso acervo.')
+
+        input('Press enter para voltar a tela inicial: ')
 
 
     def edicao(self,edit:int):
@@ -50,10 +52,10 @@ class Acervo:
             historia = input('Qual a história do fóssil?\n> ')
             url = input('Informe a URL da imagem (se quiser adicionar só depois, digite D):\n> ').strip()
 
-            if url.upper() =='S':
-                self.__adicionar_fossil(nomeDino,nomePopDino,parteDino,idadeFossil, historia)
+            if url.upper() =='D':
+                self.__adicionar_fossil(nomeDino,nomePopDino,categoria,parteDino,idadeFossil, historia)
             else:
-                self.__adicionar_fossil(nomeDino,nomePopDino,parteDino,idadeFossil, historia, url)
+                self.__adicionar_fossil(nomeDino,nomePopDino,categoria,parteDino,idadeFossil, historia, url)
 
         elif edit == 2:
                 id_dinossauro = input('\nCerto, digite o ID do dinossauro que quer excluir: ')

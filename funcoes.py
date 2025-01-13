@@ -62,12 +62,16 @@ def entrada():
                 print('     Valor digitado inválido!')
         limpar()
         if situation.lower() == 'visitante':
-            email = input('Insira seu email: ')
-            for v in visitantes:
-                if v.getemail() == email:
-                    currentv = v
+            encontrado = False
+            while not encontrado:
+                email = input('Insira seu email: ')
+                for v in visitantes:
+                    if v.getemail() == email:
+                        currentv = v
+                        encontrado = True
+                print('    Esse e-mail não foi encontrado.\n' if not encontrado else '\n')
             
-            senha = input('insira sua senha (Esqueceu a senha? Digite y para muda-la): ')
+            senha = input('Insira sua senha (Esqueceu a senha? Digite y para muda-la): ')
             limpar()
             if senha.lower() == 'y':
                 currentv.mudarsenha()
@@ -85,11 +89,15 @@ def entrada():
                     
 
         elif situation.lower() in ('funcionario', 'funcionário'):
-            id = input('Insira seu ID: ')
-            for f in funcionarios:
-                if f.vizualizar_id() == id:
-                    currentf = f
-            senha = input('insira sua senha (Esqueceu a senha? Digite y para muda-la): ')
+            encontrado = False
+            while not encontrado:
+                id = input('Insira seu ID: ')
+                for f in funcionarios:
+                    if f.vizualizar_id() == id:  #Falta colocar o caso de não ser encontrado
+                        currentf = f
+                        encontrado = True
+                print('    Esse ID não foi encontrado.\n' if not encontrado else '\n')  
+            senha = input('Insira sua senha (Esqueceu a senha? Digite y para muda-la): ')
             limpar()
             if senha.lower() == 'y':    
                 currentf.mudarsenha()
