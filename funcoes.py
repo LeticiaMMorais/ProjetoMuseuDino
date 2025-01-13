@@ -93,7 +93,7 @@ def entrada():
             while not encontrado:
                 id = input('Insira seu ID: ')
                 for f in funcionarios:
-                    if f.vizualizar_id() == id:  #Falta colocar o caso de não ser encontrado
+                    if f.vizualizar_id() == id: 
                         currentf = f
                         encontrado = True
                 print('    Esse ID não foi encontrado.\n' if not encontrado else '\n')  
