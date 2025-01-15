@@ -1,4 +1,5 @@
 from Fossil import Fossil
+import funcoes
 
 class Guia:
     def __init__(self, nome:str, genero:str, descricao:str, conhecimentoSobreFosseis:dict={}):
@@ -27,7 +28,7 @@ class Guia:
     
     def historiaFossil(self, fossil:Fossil):
         if fossil.getID() in self.__conhecimento.keys():
-            print(f'   {self.getNome()}:')
+            print(funcoes.verdeescuro+f'   {self.getNome()}:'+funcoes.fim)
             return self.__conhecimento[fossil.getID()]
         else:
             return 'Sinto muito, mas ainda não tenho conhecimento o suficiente sobre esse fóssil.'
