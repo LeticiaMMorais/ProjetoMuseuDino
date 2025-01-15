@@ -48,14 +48,14 @@ class Visitante(Pessoa):
         if vi_verificado: #vi_verificado é para saber se a senha estava correta(True) ou incorreta(False) na hora de entrar.
             funcoes.limpar()
             print('Olá, {}!'.format(self.getnome()))
-            funcao = int(input('Você deseja:\n{0}1-{1} Vizualizar acervo (por conta própria)\n{0}2-{1} Vizualizar acervo com um guia\n{0}3-{1} Conhecer a história do Museu\n{0}4-{1} Procurar fóssil\n{0}5-{1} Sobre a equipe Roberto Marino\n{0}6-{1} Vizualizar perfil\n{0}7-{1} Entrar com outra conta\n{0}8-{1} Sair\n> '.format(funcoes.ciano, funcoes.fim)))
+            funcao = input('Você deseja:\n{0}1-{1} Vizualizar acervo (por conta própria)\n{0}2-{1} Vizualizar acervo com um guia\n{0}3-{1} Conhecer a história do Museu\n{0}4-{1} Procurar fóssil\n{0}5-{1} Sobre a equipe Roberto Marino\n{0}6-{1} Vizualizar perfil\n{0}7-{1} Entrar com outra conta\n{0}8-{1} Sair\n> '.format(funcoes.ciano, funcoes.fim)).strip()
             funcoes.limpar()
 
-            if funcao == 1:
+            if funcao == '1':
                 acervodisp.listar()
                 input('\nPress enter para voltar a tela inicial: ')
 
-            elif funcao == 2:
+            elif funcao == '2':
                 if self.getGuia() == None:
                     self.setGuia(guia())
                 for fossil in acervodisp.getFosseis():
@@ -66,13 +66,13 @@ class Visitante(Pessoa):
                     input('\n\nQuando estiver pronto para seguir em frente, press enter.\n')
                     funcoes.limpar()
             
-            elif funcao == 3:
+            elif funcao == '3':
                 if self.getGuia() == None:
                     self.setGuia(guia())
                 print(funcoes.verdeescuro+self.getGuia().getNome()+funcoes.fim,':\n',self.getGuia().historiaMuseu())
                 input('\nPress enter para voltar a tela inicial: ')
 
-            elif funcao == 4:
+            elif funcao == '4':
                 modo = 0
                 while modo not in [1,2,3]:
                     modo = int(input('Você deseja encontrar o fóssil\n{0}1-{1}ID do fóssil\n{0}2-{1}Nome do dinossauro\n{0}3-{1}Hábito alimentar do dinossauro\n> '.format(funcoes.ciano, funcoes.fim)))
@@ -86,18 +86,18 @@ class Visitante(Pessoa):
                 acervodisp.encontrar_fossil(pesquisa, modo)
                 input('Press enter para voltar a tela inicial: ')
 
-            elif funcao == 5:
-                print("Nossa equipe é composta pelas programadoras Angelina Brito e Letícia Morais, que fizeram esse projeto se estender e virar um programa e pelos nossos queridos funcionários que fazem a administração do museu.")
+            elif funcao == '5':
+                print("Nossa equipe é composta pelas programadoras Angelina Brito e Letícia Morais, que fizeram esse projeto se estender e virar um programa, e pelos nossos queridos funcionários que fazem a administração do museu.")
                 input('\nPress enter para voltar a tela inicial: ')
-            elif funcao == 6:
+            elif funcao == '6':
                 self.ver_perfil()
                 input('\nPress enter para voltar a tela inicial: ')
-            elif funcao == 7:
+            elif funcao == '7':
                 return True
-            elif funcao == 8:
+            elif funcao == '8':
                 return False
             else:
-                print(funcoes.vermelho+'Esse valor não está disponível para acesso. Digite um valor válido'+funcoes.fim)
+                print(funcoes.vermelho+'Esse valor não está disponível para acesso. Digite um valor válido'+funcoes.fim, end='\n')
         else:
             print(funcoes.vermelho+'Crie uma conta ou conecte-se para acessar nosso museu'+funcoes.fim)
             return True

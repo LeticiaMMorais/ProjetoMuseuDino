@@ -1,5 +1,4 @@
-from abc import ABC, abstractmethod
-class Pessoa(ABC):
+class Pessoa():
     def __init__(self, nome, cpf, dataNascimento, email, senha):
         self.__nome = nome.title()
         self._cpf = cpf
@@ -42,13 +41,15 @@ class Pessoa(ABC):
             else:
                 print('Senha incorreta')
         elif esc == '1':
-            cpf_v = input('Digite seu CPF: ')
-            if cpf_v == self._cpf:
-                nova_senha = input('Digite sua nova senha: ')
-                self.__senha = nova_senha
-                print('Senha alterada com sucesso!')
-            else:
-                print('CPF inválido!')
+            cpf_v = ''
+            while cpf_v != self._cpf:
+                cpf_v = input('Digite seu CPF: ')
+                if cpf_v == self._cpf:
+                    nova_senha = input('Digite sua nova senha: ')
+                    self.__senha = nova_senha
+                    print('   Senha alterada com sucesso!')
+                else:
+                    print('   CPF inválido!')
 
     def acessar_homepage(self, acervodisp):
         print('Olá, {}!'.format(self.__nome))

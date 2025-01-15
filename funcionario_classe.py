@@ -23,12 +23,13 @@ class Funcionario(Pessoa):
         funcoes.limpar()
         if fu_verificado:
             print('Olá, funcionário(a) {}!'.format(self.getnome()))
-            funcao = int(input('Você deseja:\n{0}1-{1} Vizualizar acervo\n{0}2-{1} Procurar fóssil\n{0}3-{1} Editar acervo\n{0}4-{1} Visualizar perfil\n{0}5-{1} Entrar com outra conta\n{0}6-{1} Sair\n>  '.format(funcoes.ciano, funcoes.fim)))
+            funcao = input('Você deseja:\n{0}1-{1} Vizualizar acervo\n{0}2-{1} Procurar fóssil\n{0}3-{1} Editar acervo\n{0}4-{1} Visualizar perfil\n{0}5-{1} Entrar com outra conta\n{0}6-{1} Sair\n>  '.format(funcoes.ciano, funcoes.fim)).strip()
             funcoes.limpar()
-            if funcao == 1:
+            if funcao == '1':
                 acervodisp.listar()
                 input('\nPress enter para voltar a tela inicial: ')
-            elif funcao == 2: 
+            
+            elif funcao == '2': 
                 modo = 0
                 while modo not in (1, 2, 3):
                     modo = int(input('Você deseja encontrar o fóssil\n{0}1-{1}ID do fóssil\n{0}2-{1}Nome do dinossauro\n{0}3-{1}Hábito alimentar do dinossauro\n> '.format(funcoes.ciano, funcoes.fim))) 
@@ -42,14 +43,14 @@ class Funcionario(Pessoa):
                 acervodisp.encontrar_fossil(pesquisa, modo)
                 input('\nPress enter para voltar a tela inicial: ')
 
-            elif funcao == 3:
+            elif funcao == '3':
                 acervodisp.edicao(self.editar_acervo())
-            elif funcao == 4:
+            elif funcao == '4':
                 self.ver_Perfil() 
                 input('\nPress enter para voltar a tela inicial: ')   
-            elif funcao == 5:
+            elif funcao == '5':
                 return True
-            elif funcao == 6:
+            elif funcao == '6':
                 return False
             else:
                 print(funcoes.vermelho+'Esse valor não está disponível para acesso. Digite um valor válido'+funcoes.fim)

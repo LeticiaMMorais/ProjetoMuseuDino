@@ -26,7 +26,7 @@ apresentacao = ['           ______   _______   __      __         __      __   _
 '|   |\  \   |  | |  | |   _ \  |   ____| |     /     |  |    |  | |  |   |   |\      /|   |   /  /__\  \   |     /  |  | |  \ |  | |  | |  |',
 '|   | \  \  |  |_|  | |  |_> | |  |____  |  |\ \     |  |    |  |_|  |   |   | \____/ |   |  /  ______  \  |  |\ \  |  | |  |\   | |  |_|  |',
 '|___|  \__\ |_______| |_____/  |_______| |__| \_\    |__|    |_______|   |___|        |___| /__/      \__\ |__| \_\ |__| |__| \__| |_______|']
-cores = [funcoes.verdeescuro, funcoes.verde, funcoes.amarelo, funcoes.azulclaro, funcoes.ciano]
+cores = [ funcoes.amarelo, funcoes.amarelo,funcoes.verdeescuro, funcoes.verde, funcoes.ciano, funcoes.ciano, funcoes.azulclaro,  funcoes.azulclaro]# 
 seq = 0
 for p in apresentacao:
     print(cores[seq]+p+funcoes.fim)
@@ -35,6 +35,7 @@ for p in apresentacao:
         seq = 0
 input('\n\nPress enter para seguir: ')
 funcoes.limpar()
+
 verificado, person = funcoes.entrada()
 continuar = 'S'
 while continuar.upper() in ['S', 'SIM']:
